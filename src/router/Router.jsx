@@ -1,5 +1,6 @@
-import { Children } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import App from "./../App";
+import Footer from "./../components/layout/Footer";
 
 const routes = [
   {
