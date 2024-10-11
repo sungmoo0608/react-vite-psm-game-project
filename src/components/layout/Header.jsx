@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { router, routes } from "../../router/Router";
+import { routes } from "../../router/Router";
 
 const Header = () => {
   return (
@@ -37,12 +37,12 @@ const Header = () => {
                     >
                       {route.loader()}
                     </Link>
-                    {router.children && (
+                    {route.children && (
                       <ul
                         className="dropdown-menu"
                         aria-labelledby="navbarDropdown"
                       >
-                        {router.children.map((child) => (
+                        {route.children.map((child) => (
                           <li key={child.loader()}>
                             <Link to={child.path} className="dropdown-item">
                               {child.loader()}
