@@ -9,24 +9,12 @@ const routes = [
   {
     path: "/",
     element: <App />,
-    loader: () => "가위바위보",
-    children: [
-      {
-        path: "/",
-        loader: () => "가위바위보",
-        element: <RspPage />,
-      },
-    ],
-  },
-  {
-    path: "/",
-    element: <App />,
     loader: () => "로또",
     children: [
       {
         path: "/",
         loader: () => "로또",
-        element: <LottoPage />,
+        element: <RspPage />,
       },
     ],
   },
