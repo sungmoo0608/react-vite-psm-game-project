@@ -7,16 +7,16 @@ const BoardListPage = () => {
   // 정리하면 아래와 같다.
 
   // useEffect(() => {
-  // 매 렌더링마다 실행
+  //   // 매 렌더링마다 실행
   // });
 
   // useEffect(() => {
-  // 컴포넌트가 처음 렌더링된 실행
+  //   // 컴포넌트가 처음 렌더링된 실행
   // }, []);
 
   // useEffect(() => {
-  // 컴포넌트가 처음 렌더링된 이후 실행
-  // a나 b가 변경되어 컴포넌트가 재렌더링된 이후 실행
+  //   // 컴포넌트가 처음 렌더링된 이후 실행
+  //   // a나 b가 변경되어 컴포넌트가 재렌더링된 이후 실행
   // }, [a, b]);
 
   useEffect(() => {
@@ -30,8 +30,7 @@ const BoardListPage = () => {
     });
   };
 
-  return;
-  <div></div>;
+  return <div>게시판 실행</div>;
 };
 
 export default BoardListPage;
