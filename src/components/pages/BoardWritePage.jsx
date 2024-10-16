@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import boardService from "../../services/BoardService";
 
 const BoardWritePage = () => {
@@ -9,6 +9,11 @@ const BoardWritePage = () => {
   };
 
   const [board, setBoard] = useState(initBoardStrate);
+
+  //처음 랜더링 하고, 한번만 타라
+  useEffect(() => {
+    saveBoard();
+  }, []);
 
   const saveBoard = () => {
     let data = {

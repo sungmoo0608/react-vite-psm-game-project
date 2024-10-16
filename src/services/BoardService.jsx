@@ -9,7 +9,7 @@ const remove = (id) => {
 };
 
 const write = (data) => {
-  return http.post(`boards/`, data);
+  return http.post(`/boards/`, data);
 };
 
 export default {
