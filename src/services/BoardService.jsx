@@ -8,7 +8,12 @@ const remove = (id) => {
   return http.delete(`boards/${id}`);
 };
 
+const write = (data) => {
+  return http.post(`boards/`, data);
+};
+
 export default {
   getPagingList,
   remove,
+  write,
 };
