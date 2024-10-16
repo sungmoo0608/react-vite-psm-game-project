@@ -40,7 +40,15 @@ const BoardListPage = () => {
   const deleteBoard = (e) => {
     const { name, value } = e.target;
     console.log(name + "::" + value);
-    boardService.remove(value);
+    boardService
+      .remove(value)
+      .then((response) => {
+        console.log(response);
+        initBoards();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
 
     initBoards();
   };
