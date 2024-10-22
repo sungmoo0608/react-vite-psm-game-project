@@ -5,10 +5,8 @@ import Pagingnation from "../board/Pagingnation";
 
 const BoardListPage = () => {
   const [boards, setBoards] = useState([]);
-
   //http://192.168.0.10:8282/boards/list
-
-  const [paging, setPaging] = useState([]);
+  const [paging, setPaging] = useState(null);
 
   // 정리하면 아래와 같다.
 
@@ -36,6 +34,9 @@ const BoardListPage = () => {
       .then((response) => {
         console.log(response);
         setBoards(response.data.boards);
+        setPaging(response.data.page);
+
+        console.log(response.data.page);
       })
       .catch((e) => {
         console.log(e);
@@ -45,17 +46,33 @@ const BoardListPage = () => {
   const deleteBoard = (e) => {
     const { name, value } = e.target;
     console.log(name + "::" + value);
+
     boardService
       .remove(value)
-      .then((response) => {
-        console.log(response);
+      .then((respose) => {
+        console.log(respose);
         initBoards();
       })
       .catch((e) => {
         console.log(e);
       });
+  };
 
-    initBoards();
+  const onClickPaging = (e) => {
+    e.preventDefault(); //기존에 링크 동작을 하지 말아라
+
+    console.log(e.target.pathname);
+    console.log(e.target.search);
+
+    boardService
+      .getPagingList(e.target.pathname, e.target.search)
+      .then((response) => {
+        setBoards(response.data.boards);
+        setPaging(response.data.page);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -71,6 +88,7 @@ const BoardListPage = () => {
           .
         </p>
 
+        {/* <!-- DataTales Example --> */}
         <div className="card shadow mb-4">
           <div className="card-header py-3">
             <h6 className="m-0 font-weight-bold text-primary">
@@ -113,7 +131,7 @@ const BoardListPage = () => {
                         <td>{board.bhit}</td>
                         <td className="text-center">
                           <button
-                            className="btn btn-success"
+                            className="btn btn-danger"
                             value={board.bid}
                             onClick={deleteBoard}
                           >
@@ -125,10 +143,13 @@ const BoardListPage = () => {
                 </tbody>
               </table>
             </div>
-
-            {/* 페이징 */}
-            {<Pagingnation></Pagingnation>}
-
+            {/* 페이징           */}
+            {paging != null ? (
+              <Pagingnation
+                paging={paging}
+                onClickPaging={onClickPaging}
+              ></Pagingnation>
+            ) : null}
             <hr />
             <Link to="/boards/write">
               <button type="button" className="btn btn-primary">
@@ -139,7 +160,7 @@ const BoardListPage = () => {
         </div>
       </div>
     </div>
-    // <!-- /.container-fluid -->
+    // <!-- /.container-fluid -->);
   );
 };
 
