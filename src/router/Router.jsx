@@ -6,6 +6,8 @@ import BoardListPage from "../components/pages/BoardListPage";
 import BoardWritePage from "../components/pages/BoardWritePage";
 import BoardUpdatePage from "../components/pages/BoardUpdatePage";
 import LegoListPage from "../components/pages/LegoListPage";
+import LegoList2Page from "../components/pages/LegoList2Page";
+import EmpListPage from "../components/pages/EmpListPage";
 
 const routes = [
   {
@@ -63,6 +65,30 @@ const routes = [
         path: "/lego",
         loader: () => "Lego연습",
         element: <LegoListPage />,
+      },
+    ],
+  },
+  {
+    path: "/lego2",
+    element: <App />,
+    loader: () => "LegoPage연습",
+    children: [
+      {
+        path: "/lego2",
+        loader: () => "LegoPage연습",
+        element: <LegoList2Page />,
+      },
+    ],
+  },
+  {
+    path: "/empList",
+    element: <App />,
+    loader: () => "emp리스트연습",
+    children: [
+      {
+        path: "/empList",
+        loader: () => "emp리스트연습",
+        element: <EmpListPage />,
       },
     ],
   },
